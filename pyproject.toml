@@ -1,9 +1,9 @@
 [project]
 name = "anime-lineart"
 version = "0.1.0"
-description = "Add your description here"
+description = "Convert anime illustrations into editable SVG line art for CLIP STUDIO PAINT."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "numpy>=2.4.5",
     "opencv-python>=4.13.0.92",
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-anime-lineart = "anime_lineart:main"
+anime-lineart = "anime_lineart.cli.main:main"
 
 [build-system]
 requires = ["uv_build>=0.11.14,<0.12.0"]
@@ -24,3 +24,26 @@ dev = [
     "pytest>=9.0.3",
     "ruff>=0.15.13",
 ]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N", "ANN", "D"]
+ignore = ["D100", "D104", "D107", "D203", "D213"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
